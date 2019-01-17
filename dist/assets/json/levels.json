@@ -1,0 +1,11 @@
+{
+  "platformScale": 3,
+  "platforms": [
+    {
+      "x": 100,
+      "y": 100,
+      "numTiles": 3,
+      "key": "PLATFORM"
+    }
+  ]
+}
