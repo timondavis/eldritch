@@ -75,18 +75,20 @@ class TiledDecorationUtility extends iTileUtility {
                 default: continue;
             }
 
-           chunk = new TiledDecorationTile({
-               scene: scene,
-               x: topPoint.x, y: topPoint.y,
-               width: topArea.width, height: topArea.height,
-               textureKey: texture, frameKey: topFrame
-            });
+            if (data.tilesHigh > 1) {
+                chunk = new TiledDecorationTile({
+                    scene: scene,
+                    x: topPoint.x, y: topPoint.y,
+                    width: topArea.width, height: topArea.height,
+                    textureKey: texture, frameKey: topFrame
+                });
 
-            chunk.setScale(scale);
-            chunk.setOrigin(0);
+                chunk.setScale(scale);
+                chunk.setOrigin(0);
 
-            chunk.depth = 100;
-            group.add(chunk);
+                chunk.depth = 100;
+                group.add(chunk);
+            }
 
             chunk = new TiledDecorationTile({
                 scene: scene,

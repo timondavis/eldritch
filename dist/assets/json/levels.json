@@ -33,6 +33,13 @@
       "numTilesWide": 6,
       "numTilesHigh": 3,
       "key": "UNDERPASS"
+    },
+    {
+      "x": 96,
+      "y": 560,
+      "numTilesWide": 15,
+      "numTilesHigh": 1,
+      "key": "UNDERGROUND"
     }
   ]
 }

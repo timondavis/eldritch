@@ -21,6 +21,13 @@ module.exports = {
             TOP_RIGHT: "underpass-top-right.png",
             BOTTOM_LEFT: "underpass-bottom-left.png",
             BOTTOM_RIGHT: "underpass-bottom-right.png"
+        },
+        UNDERGROUND: {
+            CENTER: "underground-center.png",
+            TOP_LEFT: "underground-center.png",
+            TOP_RIGHT: "underground-center.png",
+            BOTTOM_LEFT: "underground-inset-left.png",
+            BOTTOM_RIGHT: "underground-inset-right.png",
         }
     }
 };
