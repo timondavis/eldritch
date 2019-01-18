@@ -9,6 +9,18 @@ module.exports = {
             LEFT: "platform-left.png",
             RIGHT: "platform-right.png",
             CENTER: "platform-center.png",
+        },
+        GROUND: {
+            LEFT: "ground-left.png",
+            RIGHT: "ground-right.png",
+            CENTER: "ground-center.png"
+        },
+        UNDERPASS: {
+            CENTER: "underpass-center.png",
+            TOP_LEFT: "underpass-top-left.png",
+            TOP_RIGHT: "underpass-top-right.png",
+            BOTTOM_LEFT: "underpass-bottom-left.png",
+            BOTTOM_RIGHT: "underpass-bottom-right.png"
         }
     }
 };

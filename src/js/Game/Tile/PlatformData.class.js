@@ -6,16 +6,14 @@ class PlatformData {
 
     constructor() {
 
-        this.dimensions = {
-            left: new Area(),
-            right: new Area(),
-            center: new Area()
-        };
+        this.dimensions =  new Point();
 
         this.origin = new Point();
 
         this.numberOfTiles = null;
 
         this.frameKey = "";
+
+        this.scale = 1;
     }
 };

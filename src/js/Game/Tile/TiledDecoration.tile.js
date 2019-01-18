@@ -1,5 +1,5 @@
 module.exports =
-class PlatformTile extends Phaser.GameObjects.TileSprite {
+class TiledDecorationTile extends Phaser.GameObjects.TileSprite {
 
     constructor(config) {
         super(config.scene,
@@ -9,8 +9,7 @@ class PlatformTile extends Phaser.GameObjects.TileSprite {
             config.height,
             config.textureKey,
             config.frameKey);
-
         this.scene = config.scene;
         this.scene.add.existing(this);
     }
-};
+}

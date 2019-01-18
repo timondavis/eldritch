@@ -4,8 +4,35 @@
     {
       "x": 100,
       "y": 100,
-      "numTiles": 3,
+      "numTiles": 6,
       "key": "PLATFORM"
+    },
+    {
+      "x": 250,
+      "y": 250,
+      "numTiles": 8,
+      "key": "PLATFORM"
+    },
+    {
+      "x": 150,
+      "y": 410,
+      "numTiles": 8,
+      "key": "PLATFORM"
+    },
+    {
+      "x": 42,
+      "y": 536,
+      "numTiles": 16,
+      "key": "GROUND"
+    }
+  ],
+  "tiledDecoration": [
+    {
+      "x": 250,
+      "y": 280,
+      "numTilesWide": 6,
+      "numTilesHigh": 3,
+      "key": "UNDERPASS"
     }
   ]
 }
