@@ -63,7 +63,7 @@ class PlatformUtility extends iTileUtility {
                         break;
                     }
 
-                    default: break;
+                    default: continue;
                 }
 
                 let chunk = new PlatformTile({
