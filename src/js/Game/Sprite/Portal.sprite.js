@@ -28,7 +28,6 @@ class PortalSprite extends Phaser.GameObjects.Sprite {
 
         const finishPoint = this.scene.levelData.finish;
 
-        console.log(finishPoint);
         this.scene.goal = new PortalSprite({
             scene: this.scene,
             x: finishPoint.x,

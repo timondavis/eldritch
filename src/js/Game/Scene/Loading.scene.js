@@ -38,6 +38,19 @@ class LoadingScene extends Phaser.Scene {
             repeat: -1
         });
 
+        this.anims.create({
+            key: Animations.SQUID,
+            frames: this.anims.generateFrameNames(Textures.SPRITE_ATLAS_ID, {
+                start: 0,
+                end: 1,
+                zeroPad: 1,
+                prefix: Textures.SPRITES.SQUID,
+                suffix: '.png'
+            }),
+            frameRate: 3,
+            repeat: -1
+        });
+
         this.scene.start('Platform');
     }
 

@@ -9,6 +9,9 @@ const TiledDecorationUtility = require('../Util/Tile/TiledDecoration.utility');
 
 const BruceSprite = require('../Sprite/Bruce.sprite');
 const PortalSprite = require('../Sprite/Portal.sprite');
+const SquidSprite = require('../Sprite/Squid.sprite');
+const DecorationSprite = require('../Sprite/Decoration.sprite.js');
+
 const Phaser = require('phaser');
 
 module.exports =
@@ -16,7 +19,10 @@ class PlatformScene extends Phaser.Scene {
 
     init() {
 
+        // Phyics/Sprite body groups
         this.platforms = null;
+        this.monsters = null;
+        this.decorations = null;
 
         // Level data from JSON import
         this.levelData = null;
@@ -32,6 +38,9 @@ class PlatformScene extends Phaser.Scene {
 
         // Has the level been cleared?
         this.levelCleared = false;
+
+        // Has Bruce been killed?
+        this.bruceKilled = false;
     }
 
     preload() {
@@ -43,7 +52,9 @@ class PlatformScene extends Phaser.Scene {
         this.levelData = this.cache.json.get('levelData');
         this.createPlatforms();
         this.createTiledDecorations();
+        this.createDecorations();
         this.createPortals();
+        this.createMonsters();
         this.createControls();
     }
 
@@ -54,11 +65,25 @@ class PlatformScene extends Phaser.Scene {
         }
     }
 
+    /**
+     * Activites to be executed when a level is successfully cleared.
+     */
     clearLevel() {
         console.log('level cleared');
         this.levelCleared = true;
     }
 
+    /**
+     * Bruce messed up.  Kill him.
+     */
+    killBruce() {
+        console.log('bruce killed');
+        this.bruceKilled = true;
+    }
+
+    /**
+     * Create the controls which will be bound to inputs
+     */
     createControls() {
         this.cursors = this.input.keyboard.createCursorKeys();
     }
@@ -68,6 +93,15 @@ class PlatformScene extends Phaser.Scene {
      */
     createColliders() {
         this.physics.add.collider(this.bruce, [this.platforms]);
+    }
+
+    /**
+     * Register sprite overlap handlers
+     */
+    createOverlaps() {
+        this.physics.add.overlap(this.bruce, [this.monsters], () => {
+           this.killBruce();
+        })
     }
 
     /**
@@ -88,6 +122,34 @@ class PlatformScene extends Phaser.Scene {
         startPortal.invokeLevelStartTween(() => {
             this.createBruce();
             this.createColliders();
+            this.createOverlaps();
+        });
+    }
+
+    /**
+     * Create the monsters in the level
+     */
+    createMonsters() {
+
+        this.monsters = this.physics.add.group();
+
+        this.createSquids();
+    }
+
+    /**
+     * Create squid monsters.
+     */
+    createSquids() {
+
+        let squids = this.levelData.monsters.squids;
+
+        squids.forEach((squid) => {
+            const sprite = new SquidSprite({ scene: this,
+                x: squid.x1, y: squid.y1,
+                textureKey: Textures.SPRITE_ATLAS_ID, frameKey: Textures.SPRITES.SQUID + '0.png'
+            });
+
+            sprite.init(squid);
         });
     }
 
@@ -103,9 +165,6 @@ class PlatformScene extends Phaser.Scene {
             textureKey: Textures.SPRITE_ATLAS_ID,
             frameKey: Textures.SPRITES.BRUCE + '0.png'
         });
-
-        console.log('Creating Bruce');
-        console.log(this);
 
         this.physics.add.existing(this.bruce);
         this.bruce.setScale(3);
@@ -145,7 +204,28 @@ class PlatformScene extends Phaser.Scene {
             let decorationData = this.getTiledDecorationData(config);
 
             TiledDecorationUtility.generate(this, this.tiledDecorations, decorationData);
-            console.log(this.tiledDecorations);
+        });
+    }
+
+    /**
+     * Cycle through and draw stamp-tile decorations
+     */
+    createDecorations() {
+        this.decorations = this.add.group();
+        let configs = this.levelData.decorations;
+
+        configs.forEach((decoration) => {
+
+            let sprite = new DecorationSprite({
+              scene: this,
+              x: decoration.x,
+              y: decoration.y,
+              textureKey: Textures.SPRITE_ATLAS_ID,
+              frameKey: Textures.STAMPS[decoration.key]
+            });
+
+            this.decorations.add(sprite);
+            sprite.setScale(3);
         });
     }
 

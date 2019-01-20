@@ -33,6 +33,11 @@ module.exports = {
     SPRITES: {
         BRUCE: "bruce-",
         PORTAL: "portal-",
+        SQUID: "eldritch-squid-"
+    },
+    STAMPS: {
+        TOMBSTONE: "grave.png",
+        TREE: "tree.png"
     }
 };
 

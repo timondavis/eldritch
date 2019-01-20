@@ -46,7 +46,6 @@ class BruceSprite extends Phaser.GameObjects.Sprite {
                 this.setFrame(Textures.SPRITES.BRUCE + '2.png');
             }
 
-            console.log('right is down');
         } else if (scene.cursors.left.isDown) {
             this.body.setVelocityX(-1 * playerSpeed);
             this.flipX = false;
