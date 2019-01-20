@@ -26,6 +26,12 @@ class PlatformScene extends Phaser.Scene {
 
         // the hero (sprite)
         this.bruce = null
+
+        // Goal for the level
+        this.goal = null;
+
+        // Has the level been cleared?
+        this.levelCleared = false;
     }
 
     preload() {
@@ -43,9 +49,14 @@ class PlatformScene extends Phaser.Scene {
 
     update() {
 
-        if (this.bruce) {
+        if (this.bruce && !this.levelCleared) {
             this.bruce.update();
         }
+    }
+
+    clearLevel() {
+        console.log('level cleared');
+        this.levelCleared = true;
     }
 
     createControls() {
