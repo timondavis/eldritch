@@ -75,7 +75,6 @@ class PlatformUtility extends iTileUtility {
                 chunk.setOrigin(0);
                 group.add(chunk);
                 chunk.body.updateFromGameObject();
-                chunk.body.setSize(chunk.body.width, chunk.body.height - 4 * platformScale);
                 chunk.body.y += 2 * platformScale;
             }
         }

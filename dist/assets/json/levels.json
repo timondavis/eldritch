@@ -1,4 +1,5 @@
 {
+  "playerSpeed": 100,
   "platformScale": 3,
   "platforms": [
     {
@@ -41,5 +42,9 @@
       "numTilesHigh": 1,
       "key": "UNDERGROUND"
     }
-  ]
+  ],
+  "start": {
+    "x": 300,
+    "y": 180
+  }
 }

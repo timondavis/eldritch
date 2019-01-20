@@ -16,11 +16,11 @@ let game = new Phaser.Game({
     height: 600,
     scene: [loadingScene, platformScene],
     pixelArt: true,
-    backgroundColor: 'fff',
+    backgroundColor: '9955cc',
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 700, x: 10 },
+            gravity: { y: 700, x: 0 },
             debug: true
         }
     }

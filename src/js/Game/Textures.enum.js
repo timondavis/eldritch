@@ -28,7 +28,11 @@ module.exports = {
             TOP_RIGHT: "underground-center.png",
             BOTTOM_LEFT: "underground-inset-left.png",
             BOTTOM_RIGHT: "underground-inset-right.png",
-        }
+        },
+    },
+    SPRITES: {
+        BRUCE: "bruce-",
+        PORTAL: "portal-",
     }
 };
 
