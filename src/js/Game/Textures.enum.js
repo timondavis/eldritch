@@ -33,7 +33,9 @@ module.exports = {
     SPRITES: {
         BRUCE: "bruce-",
         PORTAL: "portal-",
-        SQUID: "eldritch-squid-"
+        SQUID: "eldritch-squid-",
+        FANATIC: "fanatic-",
+        FIREBALL: "fireball/fireball-"
     },
     STAMPS: {
         TOMBSTONE: "grave.png",

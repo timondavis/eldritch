@@ -11,6 +11,7 @@ const BruceSprite = require('../Sprite/Bruce.sprite');
 const PortalSprite = require('../Sprite/Portal.sprite');
 const SquidSprite = require('../Sprite/Squid.sprite');
 const DecorationSprite = require('../Sprite/Decoration.sprite.js');
+const FanaticSprite = require('../Sprite/Fanatic.sprite');
 
 const Phaser = require('phaser');
 
@@ -41,6 +42,10 @@ class PlatformScene extends Phaser.Scene {
 
         // Has Bruce been killed?
         this.bruceKilled = false;
+
+        this.fireballs = this.physics.add.group({
+            allowGravity: false
+        });
     }
 
     preload() {
@@ -54,7 +59,6 @@ class PlatformScene extends Phaser.Scene {
         this.createTiledDecorations();
         this.createDecorations();
         this.createPortals();
-        this.createMonsters();
         this.createControls();
     }
 
@@ -62,6 +66,12 @@ class PlatformScene extends Phaser.Scene {
 
         if (this.bruce && !this.levelCleared) {
             this.bruce.update();
+        }
+
+        if (this.monsters) {
+            this.monsters.getChildren().forEach((monster) => {
+                monster.update();
+            });
         }
     }
 
@@ -79,6 +89,15 @@ class PlatformScene extends Phaser.Scene {
     killBruce() {
         console.log('bruce killed');
         this.bruceKilled = true;
+
+        this.cameras.main.shake(250);
+        this.cameras.main.on('camerashakecomplete', () => {
+
+            this.cameras.main.fade(500);
+            this.cameras.main.on('camerafadeoutcomplete', () => {
+                this.scene.restart();
+            });
+        });
     }
 
     /**
@@ -92,17 +111,19 @@ class PlatformScene extends Phaser.Scene {
      * Register collision detection for sprites
      */
     createColliders() {
-        this.physics.add.collider(this.bruce, [this.platforms]);
+        this.physics.add.collider([this.bruce, this.monsters], [this.platforms]);
     }
 
     /**
      * Register sprite overlap handlers
      */
     createOverlaps() {
-        this.physics.add.overlap(this.bruce, [this.monsters], () => {
-           this.killBruce();
-        })
+        this.physics.add.overlap(this.bruce, [this.monsters, this.fireballs], () => {
+            this.killBruce();
+        });
     }
+
+
 
     /**
      * Create the opening and closing portals which begin and end the level.
@@ -121,6 +142,7 @@ class PlatformScene extends Phaser.Scene {
 
         startPortal.invokeLevelStartTween(() => {
             this.createBruce();
+            this.createMonsters();
             this.createColliders();
             this.createOverlaps();
         });
@@ -134,6 +156,22 @@ class PlatformScene extends Phaser.Scene {
         this.monsters = this.physics.add.group();
 
         this.createSquids();
+        this.createFanatics();
+    }
+
+    createFanatics() {
+
+        let fanatics = this.levelData.monsters.fanatics;
+
+        fanatics.forEach((fanatic) => {
+            const sprite = new FanaticSprite({
+                scene: this,
+                x: fanatic.x1, x2: fanatic.x2, y: fanatic.y,
+                textureKey: Textures.SPRITE_ATLAS_ID, frameKey: Textures.SPRITES.FANATIC + '0.png'
+            });
+
+            sprite.init();
+        });
     }
 
     /**

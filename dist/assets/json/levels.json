@@ -1,6 +1,7 @@
 {
   "playerSpeed": 100,
   "platformScale": 3,
+  "projectileDuration": 5000,
   "platforms": [
     {
       "x": 100,
@@ -66,6 +67,13 @@
         "x2": 220,
         "y2": 250,
         "duration": 1000
+      }
+    ],
+    "fanatics": [
+      {
+        "y": 400,
+        "x1": 200,
+        "x2": 700
       }
     ]
   },

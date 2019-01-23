@@ -6,10 +6,6 @@ class SquidSprite extends Phaser.GameObjects.Sprite {
 
     constructor(config) {
        super(config.scene, config.x, config.y, config.textureKey, config.frameKey);
-
-       console.log('squid ctr');
-       console.log(config);
-
        this.scene = config.scene;
        this.scene.add.existing(this);
     }
@@ -46,4 +42,6 @@ class SquidSprite extends Phaser.GameObjects.Sprite {
             repeat: -1
         })
     }
+
+    update() {}
 };

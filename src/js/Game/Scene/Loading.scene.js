@@ -51,6 +51,33 @@ class LoadingScene extends Phaser.Scene {
             repeat: -1
         });
 
+        this.anims.create({
+            key: Animations.FANATIC_RUN,
+            frames: this.anims.generateFrameNames(Textures.SPRITE_ATLAS_ID, {
+                start: 0,
+                end: 1,
+                zeroPad: 1,
+                prefix: Textures.SPRITES.FANATIC,
+                suffix: '.png'
+            }),
+            frameRate: 3,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: Animations.FIREBALL,
+            frames: this.anims.generateFrameNames(Textures.SPRITE_ATLAS_ID, {
+                start: 0,
+                end: 2,
+                zeroPad: 1,
+                prefix: Textures.SPRITES.FIREBALL,
+                suffix: '.png'
+            }),
+            frameRate: 10,
+            repeat: -1,
+            yoyo: true,
+        });
+
         this.scene.start('Platform');
     }
 
