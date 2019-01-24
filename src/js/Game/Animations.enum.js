@@ -4,5 +4,6 @@ module.exports = {
     TOMBSTONE: "tombstone",
     BRUCE_RUN: "bruce-run",
     FANATIC_RUN: "fanatic-run",
-    FIREBALL: "fireball"
+    FIREBALL: "fireball",
+    FLAMETRAP: "flametrap"
 };

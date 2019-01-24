@@ -35,7 +35,8 @@ module.exports = {
         PORTAL: "portal-",
         SQUID: "eldritch-squid-",
         FANATIC: "fanatic-",
-        FIREBALL: "fireball/fireball-"
+        FIREBALL: "fireball/fireball-",
+        FLAMETRAP: "flame-trap-"
     },
     STAMPS: {
         TOMBSTONE: "grave.png",

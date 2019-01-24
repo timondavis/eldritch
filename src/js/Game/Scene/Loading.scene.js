@@ -78,6 +78,19 @@ class LoadingScene extends Phaser.Scene {
             yoyo: true,
         });
 
+        this.anims.create({
+            key: Animations.FLAMETRAP,
+            frames: this.anims.generateFrameNames(Textures.SPRITE_ATLAS_ID, {
+                start: 1,
+                end: 2,
+                zeroPad: 1,
+                prefix: Textures.SPRITES.FLAMETRAP,
+                suffix: '.png'
+            }),
+            frameRate: 3,
+            repeat: -1,
+        });
+
         this.scene.start('Platform');
     }
 

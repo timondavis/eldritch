@@ -12,6 +12,7 @@ const PortalSprite = require('../Sprite/Portal.sprite');
 const SquidSprite = require('../Sprite/Squid.sprite');
 const DecorationSprite = require('../Sprite/Decoration.sprite.js');
 const FanaticSprite = require('../Sprite/Fanatic.sprite');
+const FlametrapSprite = require('../Sprite/Flametrap.sprite');
 
 const Phaser = require('phaser');
 
@@ -32,7 +33,7 @@ class PlatformScene extends Phaser.Scene {
         this.cursors = null;
 
         // the hero (sprite)
-        this.bruce = null
+        this.bruce = null;
 
         // Goal for the level
         this.goal = null;
@@ -46,6 +47,9 @@ class PlatformScene extends Phaser.Scene {
         this.fireballs = this.physics.add.group({
             allowGravity: false
         });
+
+        this.traps = this.physics.add.staticGroup({});
+
     }
 
     preload() {
@@ -121,6 +125,12 @@ class PlatformScene extends Phaser.Scene {
         this.physics.add.overlap(this.bruce, [this.monsters, this.fireballs], () => {
             this.killBruce();
         });
+        this.physics.add.overlap(this.bruce, [this.traps], (bruce, trap) => {
+
+           if (trap.flames) {
+               this.killBruce();
+           }
+        });
     }
 
 
@@ -143,8 +153,31 @@ class PlatformScene extends Phaser.Scene {
         startPortal.invokeLevelStartTween(() => {
             this.createBruce();
             this.createMonsters();
+            this.createTraps();
             this.createColliders();
             this.createOverlaps();
+        });
+    }
+
+    /**
+     * Create traps
+     */
+    createTraps() {
+        let trapConfigs = this.levelData.traps;
+
+        trapConfigs.forEach((trap) => {
+
+            let sprite = new FlametrapSprite({
+                scene: this,
+                x: trap.x, y: trap.y,
+                textureKey: Textures.SPRITE_ATLAS_ID,
+                frameKey: Textures.SPRITES.FLAMETRAP + '0.png'
+            });
+            this.traps.add(sprite);
+            sprite.depth = 900;
+            sprite.setScale(3);
+            sprite.init(trap);
+
         });
     }
 
