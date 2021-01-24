@@ -133,8 +133,6 @@ class PlatformScene extends Phaser.Scene {
         });
     }
 
-
-
     /**
      * Create the opening and closing portals which begin and end the level.
      */
