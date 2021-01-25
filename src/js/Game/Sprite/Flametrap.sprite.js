@@ -38,8 +38,6 @@ class FlametrapSprite extends Phaser.GameObjects.Sprite {
     }
 
     flamesOn() {
-
-        console.log('flames on');
         this.anims.play(Animations.FLAMETRAP);
         this.flames = true;
         this.timerOn.paused = true;
@@ -47,8 +45,6 @@ class FlametrapSprite extends Phaser.GameObjects.Sprite {
     }
 
     flamesOff() {
-
-        console.log('flames off');
         this.anims.stop();
         this.setFrame(Textures.SPRITES.FLAMETRAP + '0.png');
         this.flames = false;

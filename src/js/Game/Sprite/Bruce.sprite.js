@@ -25,10 +25,9 @@ class BruceSprite extends Phaser.GameObjects.Sprite {
         const onGround = this.body.blocked.down || this.body.touching.down;
 
         if (onGround && scene.cursors.space.isDown){
-            this.body.setVelocityY(-500);
+            this.body.setVelocityY(-350);
             this.setFrame(Textures.SPRITES.BRUCE + '2.png');
         }
-
     }
 
     handleLeftRightInput() {

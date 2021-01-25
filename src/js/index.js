@@ -2,10 +2,10 @@ import '../style/style.scss';
 
 let Phaser = require('phaser');
 let LoadingScene = require('./Game/Scene/Loading.scene');
-let PlatformScene = require('./Game/Scene/Platform.scene');
+let ProceduralScene = require('./Game/Scene/Procedural.scene');
 
 let loadingScene = new LoadingScene('Loading');
-let platformScene  = new PlatformScene('Platform');
+let platformScene  = new ProceduralScene('Platform');
 
 console.log(loadingScene);
 

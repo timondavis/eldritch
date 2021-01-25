@@ -59,8 +59,8 @@ module.exports =
         create() {
             this.levelData = this.cache.json.get('levelData');
             this.createPlatforms();
-            this.createTiledDecorations();
-            this.createDecorations();
+            //this.createTiledDecorations();
+            //this.createDecorations();
             this.createPortals();
             this.createControls();
         }
@@ -149,8 +149,8 @@ module.exports =
 
             startPortal.invokeLevelStartTween(() => {
                 this.createBruce();
-                this.createMonsters();
-                this.createTraps();
+                //this.createMonsters();
+                //this.createTraps();
                 this.createColliders();
                 this.createOverlaps();
             });
@@ -242,21 +242,19 @@ module.exports =
         }
 
         /**
-         * Cycle through the platforms from the level configuration file.  Generate and
-         * configure the sprites, bodies and add them to a group for platforms.
+         * Create the initial platforms on the start position of the screen.
          */
         createPlatforms() {
 
             this.platforms = this.physics.add.staticGroup();
-            const platformConfigs = this.levelData.platforms;
-
-            // Introduce every platform from the level config into the physics and sprite engines.
-            platformConfigs.forEach((config) => {
-
-                let platformData = this.getPlatformData(config);
-
-                PlatformUtility.generate(this, this.platforms, platformData)
+            var platformData = this.getPlatformData({
+                x: 100,
+                y: 300,
+                numTiles: 6,
+                key: "PLATFORM"
             });
+
+            PlatformUtility.generate(this, this.platforms, platformData)
         }
 
         /**
